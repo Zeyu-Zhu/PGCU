@@ -1,6 +1,6 @@
 # Probability-based Global Cross-modal Upsampling for Pansharpening (CVPR'23)
 
-[`Zeyu Zhu`](zeyuzhu2077@gmail.com) and [`Xiangyong Cao`](https://gr.xjtu.edu.cn/en/web/caoxiangyong/publication)
+[`Zeyu Zhu`](zeyuzhu2077@gmail.com) and [`Xiangyong Cao`](https://gr.xjtu.edu.cn/en/web/caoxiangyong/home)
 
 
 For more information, please see our 
@@ -24,14 +24,17 @@ pip  install -i requirements.txt
     train_pannet.py  Training PanNet and PanNet*
 
 
-The implementation of PGCU is in model/PGCU.py, and the upsampling factor is set to 4, which is the image scale of the PAN image. To use PGCU in a pan-sharpening network, you can simply replace the original upsampling method with PGCU. Specifically, 
-# How to Declaration PGCU?
+The implementation of PGCU is in model/PGCU.py, and the upsampling factor is set to 4. To use PGCU in a pan-sharpening network, you can simply replace the original upsampling method with PGCU.
+## How to Declaration PGCU?
     There are three main hyperparameters needed to be set
         the number of channels in the LRMS image
         the length of the feature vector in F, G.
         the number of DownSamplingBlock used in Information Extraction(for F)
-# How to use PGCU in forward function?
+## How to use PGCU in forward function?
     Just simply replace the original upsampling method with PGCU.
             eg: upsampled_ms = self.PGCU(pan, lrms)
+## How to change scale factor in PGCU?
+    PGCU is designed to upsample the LRMS to the scale of PAN.
+    The only thing need to change is the difference between the number of DownSamplingBlock for F and G.
 A real example can be seen in model/FusionNet.py, in which FusionNet is the original pan-sharpening method and FusionNet* is the method whose upsampling component is replaced by PGCU
         
