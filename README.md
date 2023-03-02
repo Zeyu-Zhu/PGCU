@@ -24,7 +24,7 @@ pip  install -i requirements.txt
     train_pannet.py  Training PanNet and PanNet*
 
 
-The implementation of PGCU is in model/PGCU.py, and the upsampling factor is set to 4. To use PGCU in a pan-sharpening network, you can simply replace the original upsampling method with PGCU.
+The implementation of PGCU is in model/PGCU.py, and the upsampling factor is set to 4. To use PGCU in a pan-sharpening network, you can simply replace the original upsampling method with PGCU. A real example can be seen in model/PanNet.py, in which PanNet is the original pan-sharpening method and PanNet* is the method whose upsampling component is replaced by PGCU
 ## How to Declaration PGCU?
 There are three main hyperparameters needed to be set
     the number of channels in the LRMS image
@@ -35,6 +35,4 @@ There are three main hyperparameters needed to be set
 Just simply replace the original upsampling method with PGCU.
 ## How to change scale factor in PGCU?
 PGCU is designed to upsample the LRMS to the scale of PAN. The only thing need to change is the difference between the number of DownSamplingBlock for F and G.
-
-A real example can be seen in model/PanNet.py, in which PanNet is the original pan-sharpening method and PanNet* is the method whose upsampling component is replaced by PGCU
         
