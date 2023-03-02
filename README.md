@@ -26,15 +26,15 @@ pip  install -i requirements.txt
 
 The implementation of PGCU is in model/PGCU.py, and the upsampling factor is set to 4. To use PGCU in a pan-sharpening network, you can simply replace the original upsampling method with PGCU.
 ## How to Declaration PGCU?
-    There are three main hyperparameters needed to be set
-        the number of channels in the LRMS image
-        the length of the feature vector in F, G.
-        the number of DownSamplingBlock used in Information Extraction(for F)
+There are three main hyperparameters needed to be set
+    the number of channels in the LRMS image
+    the length of the feature vector in F, G.
+    the number of DownSamplingBlock used in Information Extraction(for F)
 ## How to use PGCU in forward function?
-    Just simply replace the original upsampling method with PGCU.
-            eg: upsampled_ms = self.PGCU(pan, lrms)
+    eg: upsampled_ms = self.PGCU(pan, lrms)
+Just simply replace the original upsampling method with PGCU.
 ## How to change scale factor in PGCU?
-    PGCU is designed to upsample the LRMS to the scale of PAN.
-    The only thing need to change is the difference between the number of DownSamplingBlock for F and G.
-A real example can be seen in model/FusionNet.py, in which FusionNet is the original pan-sharpening method and FusionNet* is the method whose upsampling component is replaced by PGCU
+PGCU is designed to upsample the LRMS to the scale of PAN. The only thing need to change is the difference between the number of DownSamplingBlock for F and G.
+
+A real example can be seen in model/PanNet.py, in which PanNet is the original pan-sharpening method and PanNet* is the method whose upsampling component is replaced by PGCU
         
