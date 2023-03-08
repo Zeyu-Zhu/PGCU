@@ -34,14 +34,15 @@ In the forward funcation in your model, you can samply upsample the image with t
 # pan: panchromatic (PAN) image
 self.upsample.forward(lrms, pan)
 ```
-It's worth noting that our implementation of PGCU is used to upsample LRMS to the scale of PAN while  PAN is four times the size of LRMS. So PGCU will upsample LRMS for four times. If you want to change it, you may add `MaxPooling` or `Conv2d` with `stride=2` to make the information matrix extracted from LRMS and PAN to be in the same size.
+It's worth noting that our implementation of PGCU is used to upsample LRMS to the scale of PAN while  PAN is four times the size of LRMS. So PGCU will upsample LRMS for four times. If you want to change it, you may add `MaxPooling` or `Conv2d` with `stride=2` to make the information matrix extracted from LRMS and PAN to be in the same size. The implementation of PGCU is in `model/PGCU.py`
 
 ## Other Codes
+Data preprocessing, dataloader and metrics(SAM, ESGAR, PSNR and etc) are implemented in `utils`.
 
 ## Result on PanNet
 Pre-trained models on WorldView2 and WorldView3 datasets are saved in `result/PanNet/WV2exp0` and `result/PanNet/WV3exp0`, respectively.
-<center class='half'>
+<figure class='half'>
   <img src="result/PanNet/WV2exp0/loss.jpg" width=240/>
   <img src="result/PanNet/WV3exp0/loss.jpg" width=240/>
-<center/>
+<figure/>
 The training and testing result on WV2 and WV3 datasets
