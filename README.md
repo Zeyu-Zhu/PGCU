@@ -1,38 +1,47 @@
 # Probability-based Global Cross-modal Upsampling for Pansharpening (CVPR'23)
+[`Zeyu Zhu`](), and [`Xiangyong Cao`](https://gr.xjtu.edu.cn/en/web/caoxiangyong/home)
 
-[`Zeyu Zhu`](zeyuzhu2077@gmail.com) and [`Xiangyong Cao`](https://gr.xjtu.edu.cn/en/web/caoxiangyong/home)
+For more information please see our paper: [`Arxiv`]()
 
 
-For more information, please see our 
-- **Paper**: [`CVPR-2023-Open-Access`]() or [`arxiv`]().
+## How PGCU can be embedded in existing method
+<p align="center">
+  <img src="figure/embedding.png" />
+</p>
+(a) PGCU module is embedded into the residual backbone; (b) PGCU module is embedded into the two-branch backbone; (c) The overall flow of PGCU module.
 
-# Environment
-Setup a virtual environment using the provided``requirements.txt``.
+## Implementation of PGCU module 
+<p align="center">
+  <img src="figure/main.png" />
+</p>
+The PGCU module consists of three blocks, i.e., information extraction (IE), distribution and expectation estimation (DEE), and fine adjustment (FA). IE extracts global information of LRMS and cross-modal information of PAN. Then DEE estimates pixel expectation in the upsampled image. Finally, FA further compensates for using the local information and channel correlation of the upsampled image.
+
+## Setting up a virtual conda environment
+Setup a virtual conda environment using the provided ``requirements.txt``.
 ```
-pip  install -i requirements.txt
+conda create --name PGCU --file requirements.txt
+conda activate PGCU
 ```
 
-# Project Struct
-    model/ 
-        PGCU.py     The implementation of PGCU 
-        PanNet.py   The implementation of PanNet and PanNet*(improved by PGCU)
-    utils/
-        funcation.py Some useful funcations
-        dataset.py   Datapreprocess and dataloader
-        visualize.py The recoder for training process
-        metrices.py  The evaluation index, e.g. SAM, ESGAR, PSNR and etc
-    train_pannet.py  Training PanNet and PanNet*
+## Embedding PGCU in your super-resolution model
+You can samply define PGCU module in your model with three hyper-parameters, i.e., Channel, VecLen, NumberBlocks, which represent image channel, feature vector length and the number of stacked DSBlocks. Details can be found in our paper.
+```
+self.upsample = PGCU(Channel, VecLen, NumberBlocks)
+```
+In the forward funcation in your model, you can samply upsample the image with the guiding image, by following code,
+```
+# lrms: low resolution multispectral image
+# pan: panchromatic (PAN) image
+self.upsample.forward(lrms, pan)
+```
+It's worth noting that our implementation of PGCU is used to upsample LRMS to the scale of PAN while  PAN is four times the size of LRMS. So PGCU will upsample LRMS for four times. If you want to change it, you may add `MaxPooling` or `Conv2d` with `stride=2` to make the information matrix extracted from LRMS and PAN to be in the same size.
 
+## Other Codes
 
-The implementation of PGCU is in model/PGCU.py, and the upsampling factor is set to 4. To use PGCU in a pan-sharpening network, you can simply replace the original upsampling method with PGCU. A real example can be seen in model/PanNet.py, in which PanNet is the original pan-sharpening method and PanNet* is the method whose upsampling component is replaced by PGCU
-## How to Declaration PGCU?
-There are three main hyperparameters needed to be set
-    the number of channels in the LRMS image
-    the length of the feature vector in F, G.
-    the number of DownSamplingBlock used in Information Extraction(for F)
-## How to use PGCU in forward function?
-    eg: upsampled_ms = self.PGCU(pan, lrms)
-Just simply replace the original upsampling method with PGCU.
-## How to change scale factor in PGCU?
-PGCU is designed to upsample the LRMS to the scale of PAN. The only thing need to change is the difference between the number of DownSamplingBlock for F and G.
-        
+## Result on PanNet
+Pre-trained models on WorldView2 and WorldView3 datasets are saved in `result/PanNet/WV2exp0` and `result/PanNet/WV3exp0`, respectively.
+<center class='half'>
+  <img src="result/PanNet/WV2exp0/loss.jpg" width=240/>
+  <img src="result/PanNet/WV3exp0/loss.jpg" width=240/>
+<center/>
+The training and testing result on WV2 and WV3 datasets
