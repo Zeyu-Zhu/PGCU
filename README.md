@@ -1,7 +1,7 @@
 # Probability-based Global Cross-modal Upsampling for Pansharpening (CVPR'23)
 [`Zeyu Zhu`](), and [`Xiangyong Cao`](https://gr.xjtu.edu.cn/en/web/caoxiangyong/home)
 
-For more information please see our paper: [`Arxiv`]()
+For more information please see our paper: [`Arxiv`](http://arxiv.org/abs/2303.13659)
 
 
 ## How PGCU can be embedded in existing method
