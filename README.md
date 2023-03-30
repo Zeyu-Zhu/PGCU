@@ -1,5 +1,5 @@
 # Probability-based Global Cross-modal Upsampling for Pansharpening (CVPR'23)
-[`Zeyu Zhu`](), and [`Xiangyong Cao`](https://gr.xjtu.edu.cn/en/web/caoxiangyong/home)
+[`Zeyu Zhu`](https://scholar.google.com/citations?hl=zh-CN&view_op=list_works&gmla=ABEO0Ypgw7n86h8mMjkhHVfmhMuPPgnO7C4NT-RWQ_lB1xSqtIWcyPqrPOsxI7ffxZ-amtiKK7KVFRnx_ZOPxFYH2-iKKLY&user=X3CisOwAAAAJ), and [`Xiangyong Cao`](https://gr.xjtu.edu.cn/en/web/caoxiangyong/home)
 
 For more information please see our paper: [`Arxiv`](http://arxiv.org/abs/2303.13659)
 
