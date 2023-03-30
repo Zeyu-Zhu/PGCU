@@ -43,7 +43,7 @@ Data preprocessing, dataloader and metrics(SAM, ESGAR, PSNR and etc) are impleme
 Pre-trained models on WorldView2 and WorldView3 datasets are saved in `result/PanNet/WV2exp0` and `result/PanNet/WV3exp0`, respectively.
 
 ## Citations
-If you find our work useful, please cite out paper.
+If you find our work useful, please cite our paper.
 ```
 @article{zhu2023probability,
   title={Probability-based Global Cross-modal Upsampling for Pansharpening},
