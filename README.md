@@ -42,6 +42,11 @@ Data preprocessing, dataloader and metrics(SAM, ESGAR, PSNR and etc) are impleme
 ## Result on PanNet
 Pre-trained models on WorldView2 and WorldView3 datasets are saved in `result/PanNet/WV2exp0` and `result/PanNet/WV3exp0`, respectively.
 
+## Poster
+<p align="center">
+  <img src="figure/poster.png" />
+</p>
+
 ## Citations
 If you find our work useful, please cite our paper.
 ```
